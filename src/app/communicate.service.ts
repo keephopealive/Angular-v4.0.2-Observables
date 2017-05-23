@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class CommunicateService {
- // observable array sources
-  private usersSource = new Subject<Array<any>>();
 
-  // observable array streams
-  usersStream = this.usersSource.asObservable();
+  subject = new BehaviorSubject(null);
 
   updateUsers(users: Array<any>){
-    this.usersSource.next(users);
+    this.subject.next(users);
   }
-  
+
 }

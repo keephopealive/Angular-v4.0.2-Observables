@@ -1,3 +1,4 @@
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { CommunicateService } from './communicate.service';
 import { Component, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
@@ -8,24 +9,17 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
   title = 'app works!';
-  subscription: Subscription;
+
   users = [
     {email:'a@a.com'},
     {email:'b@b.com'}
   ]
 
   constructor(private _communicateService: CommunicateService) {
-    this.subscription = _communicateService.usersStream.subscribe( users => {
-      this.users = users;
-    });
+    this._communicateService.subject.next(this.users);
   }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
- 
 
   changeOne(){
     this.users = [

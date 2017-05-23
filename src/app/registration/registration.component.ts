@@ -12,9 +12,9 @@ export class RegistrationComponent implements OnDestroy {
   users = [];
 
   constructor(private _communicateService: CommunicateService) {
-    this.subscription = _communicateService.usersStream.subscribe( users => {
+    this.subscription = this._communicateService.subject.subscribe((users) => {
       this.users = users;
-    })
+    }, (err) => {}, () => {});
   }
 
   ngOnDestroy() {
