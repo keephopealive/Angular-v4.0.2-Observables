@@ -1,3 +1,17 @@
-<h1>
-  {{title}}
-</h1>
+<h1>AppComponent</h1>
+{{users | json}}
+<hr>
+<!--
+  Prior to routing....
+<app-login [users]="users"></app-login>
+<app-registration [users]="users"></app-registration>
+-->
+
+<!-- With routing... -->
+<a [routerLink]="['/login']" >Login</a>
+<a [routerLink]="['/registration']">Registration</a>
+<hr>
+<button (click)="changeOne()">Change to 1</button>
+<button (click)="changeTwo()">Change to 2</button>
+<button (click)="changeThree()">Change to 3</button>
+<router-outlet></router-outlet>
