@@ -10,11 +10,6 @@ export class CommunicateService {
   // observable array streams
   usersStream = this.usersSource.asObservable();
 
-
-  constructor(){
-
-  }
-
   updateUsers(users: Array<any>){
     this.usersSource.next(users);
   }
